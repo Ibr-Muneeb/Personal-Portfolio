@@ -79,6 +79,13 @@ body {
     color: gray;
 }
 
+.text .location img {
+    width: 24px;
+    height: auto;
+    padding-right: 10px;
+}
+
+
 .text .role {
     font-family: "Domine", serif;
     font-optical-sizing: auto;
