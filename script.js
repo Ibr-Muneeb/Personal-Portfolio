@@ -1,5 +1,29 @@
 import * as THREE from 'three';
 
+// Image tilt effect based on mouse position
+const pic = document.querySelector('.pic');
+
+pic.addEventListener('mousemove', (e) => {
+    const rect = pic.getBoundingClientRect();
+    const x = e.clientX - rect.left; // Mouse X position within the element
+    const y = e.clientY - rect.top;  // Mouse Y position within the element
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    // Calculate rotation based on distance from center
+    // Normalize to -1 to 1 range
+    const rotateY = ((x - centerX) / centerX) * 15; // Max 15 degrees left/right
+    const rotateX = ((centerY - y) / centerY) * 15; // Max 15 degrees up/down
+    
+    pic.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+pic.addEventListener('mouseleave', () => {
+    // Reset to flat when mouse leaves
+    pic.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+});
+
 // Game state
 let gameState = {
     scene: null,
